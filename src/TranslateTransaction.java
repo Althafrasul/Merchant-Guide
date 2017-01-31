@@ -1,6 +1,4 @@
 import java.util.*;
-import java.lang.*;
-import java.io.*;
 
 public class TranslateTransaction{
     
@@ -74,7 +72,11 @@ public class TranslateTransaction{
             stringBuilder.append(romanNumeralsToken.get(valueofElement[j]));
         }
         int valueOfElementInDecimal = Utils.romanToInteger(stringBuilder.toString());
-        elementValueList.put(element, creditValue/valueOfElementInDecimal);
+        if(valueOfElementInDecimal == 0){
+        	System.out.println(query + " I have no idea what you are talking about."); 
+        }else{
+        	elementValueList.put(element, creditValue/valueOfElementInDecimal);
+        }
     }
     
     /**

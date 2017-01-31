@@ -10,6 +10,7 @@ public class Utils {
   Hashtable < Character, Integer > romanNumeralMap = map;
   int sumOfRomanNumeral = 0;
   int prev = 0;
+  checkSymentic(romanNumeral);
   romanNumeral = formatString(romanNumeral);
   for (int i = romanNumeral.length() - 1; i >= 0; i--) {
    if(romanNumeralMap.containsKey(romanNumeral.charAt(i))){
@@ -82,15 +83,15 @@ public class Utils {
   * example, 1,000 = M, 900 = CM, and 3 = III. Therefore, 1903 = MCMIII.
   */
 
- public final static String checkSymentic(String string) {
+ public final static void checkSymentic(String string) {
 
   String errorMessage = null;
 
   // "I", "X", "C", and "M" can be repeated three times
   if (Pattern.compile(UniversalConstants.REGEX_MORE_THAN_3_OCCURANCE)
    .matcher(string).find()) {
-
    errorMessage = UniversalConstants.ERROR_MESSAGE_4_OCCURANCE;
+   System.out.println(errorMessage);
 
   }
 
@@ -98,7 +99,7 @@ public class Utils {
   if (Pattern.compile(UniversalConstants.REGEX_MORE_THAN_ONE_OCCURANCE)
    .matcher(string).find()) {
 
-   errorMessage = UniversalConstants.ERROR_MESSAGE_2_OCCURANCE;
+   errorMessage = UniversalConstants.ERROR_MESSAGE_2_OCCURANCE;System.out.println(errorMessage);
 
   }
 
@@ -107,7 +108,6 @@ public class Utils {
    .compile(
     UniversalConstants.REGEX_MORE_THAN_1_OCCURANCE_OF_I_AS_PREFIX)
    .matcher(string).find()) {
-
    errorMessage = UniversalConstants.ERROR_MESSAGE_2_OCCURANCE_I_PREFIX;
   }
 
@@ -118,7 +118,7 @@ public class Utils {
    .matcher(string).find()) {
 
    errorMessage = UniversalConstants.ERROR_MESSAGE_2_OCCURANCE_X_PREFIX;
-
+   System.out.println(errorMessage);
   }
 
   // "C" cannot occure more than once in from of D,M
@@ -128,10 +128,8 @@ public class Utils {
    .matcher(string).find()) {
 
    errorMessage = UniversalConstants.ERROR_MESSAGE_2_OCCURANCE_C_PREFIX;
-
+   System.out.println(errorMessage);
   }
-
-  return errorMessage;
  }
 
  /**
@@ -144,15 +142,13 @@ public class Utils {
   int startIndex = 0, endIndex = 0;
   for (int i = 0; i < queryArray.size(); i++) {
    if (queryArray.get(i).toLowerCase().equals("is")) {
-    startIndex = i + 1;
+	   startIndex = i + 1;
    } else if (queryArray.get(i).toLowerCase().equals("?")) {
-    endIndex = i;
-
+	   endIndex = i;
    }
   }
   String[] array = queryArray.toArray(new String[queryArray.size()]);
   return new ArrayList < String > (Arrays.asList(java.util.Arrays.copyOfRange(array, startIndex, endIndex)));
-
  }
 
 }
