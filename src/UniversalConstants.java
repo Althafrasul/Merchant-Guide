@@ -25,11 +25,16 @@ public class UniversalConstants {
     static final double GOLD_PER_UNIT = 14450;
     
     // Rules for valid roman inputs
-    static final String REGEX_MORE_THAN_3_OCCURANCE = "([I,X,C,M])\\1{3,}";
-    static final String REGEX_MORE_THAN_ONE_OCCURANCE = "([D,L,V])\\1{1,}";
-    static final String REGEX_MORE_THAN_1_OCCURANCE_OF_I_AS_PREFIX = "(I)\\1+([V,X,L,C,D,M])";
-    static final String REGEX_MORE_THAN_1_OCCURANCE_OF_X_AS_PREFIX = "(X)\\1+([L,C,D,M])";
-    static final String REGEX_MORE_THAN_1_OCCURANCE_OF_C_AS_PREFIX = "(C)\\1+([D,M])";
+    static final String REGEX_MORE_THAN_3_OCCURANCE_I = ".*I.*I.*I";
+    static final String REGEX_MORE_THAN_3_OCCURANCE_X = ".*X.*X.*X";
+    static final String REGEX_MORE_THAN_3_OCCURANCE_C = ".*C.*C.*C";
+    static final String REGEX_MORE_THAN_3_OCCURANCE_M = ".*M.*M.*M";
+    static final String REGEX_V_MORE_THAN_ONE_OCCURANCE = ".*V.*V.*";
+    static final String REGEX_D_MORE_THAN_ONE_OCCURANCE = ".*D.*D.*";
+    static final String REGEX_L_MORE_THAN_ONE_OCCURANCE = ".*L.*L.*";
+    static final String REGEX_MORE_THAN_1_OCCURANCE_OF_I_AS_PREFIX = "(I)\\1+(VXLCDM)";
+    static final String REGEX_MORE_THAN_1_OCCURANCE_OF_X_AS_PREFIX = "(X)\\1+(LCDM)";
+    static final String REGEX_MORE_THAN_1_OCCURANCE_OF_C_AS_PREFIX = "(C)\\1+(DM)";
     
     // Error Messages for invalid inputs
     static final String ERROR_MESSAGE_2_OCCURANCE = "Invalid Input D,L,V cannot occure twise";

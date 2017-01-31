@@ -74,6 +74,9 @@ public class TranslateTransaction{
         int valueOfElementInDecimal = Utils.romanToInteger(stringBuilder.toString());
         if(valueOfElementInDecimal == 0){
         	System.out.println(query + " I have no idea what you are talking about."); 
+        }else if (valueOfElementInDecimal == -1){
+        	//Do nothing invalid input
+        	System.out.println(query); 
         }else{
         	elementValueList.put(element, creditValue/valueOfElementInDecimal);
         }
@@ -113,6 +116,9 @@ public class TranslateTransaction{
             int value = Utils.romanToInteger(tokenValueToRoman.toString());
             if(value == 0){
             	System.out.println(query+" : I have no idea what you are talking about");
+            }else if (value == -1){
+            	//Do nothing invalid input
+            	System.out.println(query);
             }else{
             	tokenValue.add("is");tokenValue.add(Integer.toString(value));
             	Utils.outputFormatter(tokenValue);
@@ -147,6 +153,9 @@ public class TranslateTransaction{
             int elementValue = (Utils.romanToInteger(tokenValueToRoman.toString()) * elementValueList.get(element));
             if(elementValue == 0){
             	System.out.println(query+" : I have no idea what you are talking about");
+            }else if (elementValue == -1){
+            	//Do nothing invalid input
+            	System.out.println(query);
             }else{
             	 tokenValue.add("is");
             	 tokenValue.add(Integer.toString(elementValue));

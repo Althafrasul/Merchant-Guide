@@ -10,7 +10,6 @@ public class Utils {
   Hashtable < Character, Integer > romanNumeralMap = map;
   int sumOfRomanNumeral = 0;
   int prev = 0;
-  checkSymentic(romanNumeral);
   romanNumeral = formatString(romanNumeral);
   for (int i = romanNumeral.length() - 1; i >= 0; i--) {
    if(romanNumeralMap.containsKey(romanNumeral.charAt(i))){
@@ -21,6 +20,13 @@ public class Utils {
 					sumOfRomanNumeral += temp;
 				prev = temp;
 		}
+  }
+  if(sumOfRomanNumeral != 0){
+	  String error = checkSymentic(romanNumeral);
+	 if(error != null){
+		System.out.print("Error:" + error +" - "); 
+		return -1;
+	 }
   }
   return sumOfRomanNumeral;
  }
@@ -83,31 +89,42 @@ public class Utils {
   * example, 1,000 = M, 900 = CM, and 3 = III. Therefore, 1903 = MCMIII.
   */
 
- public final static void checkSymentic(String string) {
-
+ public final static String checkSymentic(String romanNumerals) {
   String errorMessage = null;
 
   // "I", "X", "C", and "M" can be repeated three times
-  if (Pattern.compile(UniversalConstants.REGEX_MORE_THAN_3_OCCURANCE)
-   .matcher(string).find()) {
+  if (Pattern.compile(UniversalConstants.REGEX_MORE_THAN_3_OCCURANCE_I)
+   .matcher(romanNumerals).find()) {
    errorMessage = UniversalConstants.ERROR_MESSAGE_4_OCCURANCE;
-   System.out.println(errorMessage);
-
-  }
+  }else if (Pattern.compile(UniversalConstants.REGEX_MORE_THAN_3_OCCURANCE_C)
+  .matcher(romanNumerals).find()) {
+  errorMessage = UniversalConstants.ERROR_MESSAGE_4_OCCURANCE;
+  }else if (Pattern.compile(UniversalConstants.REGEX_MORE_THAN_3_OCCURANCE_X)
+   .matcher(romanNumerals).find()) {
+   errorMessage = UniversalConstants.ERROR_MESSAGE_4_OCCURANCE;
+   }else if (Pattern.compile(UniversalConstants.REGEX_MORE_THAN_3_OCCURANCE_M)
+		   .matcher(romanNumerals).find()) {
+	   errorMessage = UniversalConstants.ERROR_MESSAGE_4_OCCURANCE;
+   }
 
   // "D", "L", and "V" can never be repeated
-  if (Pattern.compile(UniversalConstants.REGEX_MORE_THAN_ONE_OCCURANCE)
-   .matcher(string).find()) {
-
-   errorMessage = UniversalConstants.ERROR_MESSAGE_2_OCCURANCE;System.out.println(errorMessage);
-
+  if (Pattern.compile(UniversalConstants.REGEX_V_MORE_THAN_ONE_OCCURANCE)
+   .matcher(romanNumerals).find()) {
+   errorMessage = UniversalConstants.ERROR_MESSAGE_2_OCCURANCE;
+  }else if(Pattern.compile(UniversalConstants.REGEX_L_MORE_THAN_ONE_OCCURANCE)
+		   .matcher(romanNumerals).find()){
+	  errorMessage = UniversalConstants.ERROR_MESSAGE_2_OCCURANCE;
+  }else if(Pattern.compile(UniversalConstants.REGEX_D_MORE_THAN_ONE_OCCURANCE)
+		   .matcher(romanNumerals).find()){
+	  errorMessage = UniversalConstants.ERROR_MESSAGE_2_OCCURANCE;
   }
 
   // "I" cannot occure more than once in from of C,X,L,C,D,M
   if (Pattern
    .compile(
     UniversalConstants.REGEX_MORE_THAN_1_OCCURANCE_OF_I_AS_PREFIX)
-   .matcher(string).find()) {
+   .matcher(romanNumerals).find()) {
+
    errorMessage = UniversalConstants.ERROR_MESSAGE_2_OCCURANCE_I_PREFIX;
   }
 
@@ -115,21 +132,21 @@ public class Utils {
   if (Pattern
    .compile(
     UniversalConstants.REGEX_MORE_THAN_1_OCCURANCE_OF_X_AS_PREFIX)
-   .matcher(string).find()) {
+   .matcher(romanNumerals).find()) {
 
    errorMessage = UniversalConstants.ERROR_MESSAGE_2_OCCURANCE_X_PREFIX;
-   System.out.println(errorMessage);
+  
   }
 
   // "C" cannot occure more than once in from of D,M
   if (Pattern
    .compile(
     UniversalConstants.REGEX_MORE_THAN_1_OCCURANCE_OF_C_AS_PREFIX)
-   .matcher(string).find()) {
+   .matcher(romanNumerals).find()) {
 
    errorMessage = UniversalConstants.ERROR_MESSAGE_2_OCCURANCE_C_PREFIX;
-   System.out.println(errorMessage);
   }
+  return errorMessage;
  }
 
  /**
