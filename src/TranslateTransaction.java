@@ -109,8 +109,12 @@ public class TranslateTransaction{
                 tokenValueToRoman.add(romanNumeralsToken.get(tokenValue.get(i)));
             }
             int value = Utils.romanToInteger(tokenValueToRoman.toString());
-            tokenValue.add("is");tokenValue.add(Integer.toString(value));
-            Utils.outputFormatter(tokenValue);
+            if(value == 0){
+            	System.out.println(query+" : I have no idea what you are talking about");
+            }else{
+            	tokenValue.add("is");tokenValue.add(Integer.toString(value));
+            	Utils.outputFormatter(tokenValue);
+            }
         }
         else{
             System.out.println(query+" : I have no idea what you are talking about");
@@ -139,8 +143,14 @@ public class TranslateTransaction{
                 }
             }
             int elementValue = (Utils.romanToInteger(tokenValueToRoman.toString()) * elementValueList.get(element));
-            tokenValue.add("is");tokenValue.add(Integer.toString(elementValue));tokenValue.add("Credits");
-            Utils.outputFormatter(tokenValue);
+            if(elementValue == 0){
+            	System.out.println(query+" : I have no idea what you are talking about");
+            }else{
+            	 tokenValue.add("is");
+            	 tokenValue.add(Integer.toString(elementValue));
+            	 tokenValue.add("Credits");
+                 Utils.outputFormatter(tokenValue);
+            }
         }
         else{
             System.out.println(query+" : I have no idea what you are talking about");

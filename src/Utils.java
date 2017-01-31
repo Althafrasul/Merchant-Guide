@@ -12,12 +12,14 @@ public class Utils {
   int prev = 0;
   romanNumeral = formatString(romanNumeral);
   for (int i = romanNumeral.length() - 1; i >= 0; i--) {
-   int temp = romanNumeralMap.get(romanNumeral.charAt(i));
-   if (temp < prev)
-    sumOfRomanNumeral -= temp;
-   else
-    sumOfRomanNumeral += temp;
-   prev = temp;
+   if(romanNumeralMap.containsKey(romanNumeral.charAt(i))){
+				int temp = romanNumeralMap.get(romanNumeral.charAt(i));
+				if (temp < prev)
+					sumOfRomanNumeral -= temp;
+				else
+					sumOfRomanNumeral += temp;
+				prev = temp;
+		}
   }
   return sumOfRomanNumeral;
  }
